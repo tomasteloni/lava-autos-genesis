@@ -1,0 +1,12 @@
+# Libs de terceros (se descargan con download_libs.py)
+lib/gsap.min.js
+lib/ScrollTrigger.min.js
+lib/lenis.min.js
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
