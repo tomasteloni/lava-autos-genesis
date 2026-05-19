@@ -1,0 +1,125 @@
+<svg viewBox="0 0 500 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lava Autos Génesis">
+  <title>Lava Autos Génesis</title>
+
+  <!-- ── Badge outline (sigue el contorno de alas) ── -->
+  <path
+    d="M 48 7 L 452 7 C 464 7 477 18 483 39
+       L 493 70 Q 497 82 487 89
+       C 468 97 443 107 418 116
+       L 393 128 L 393 186
+       L 107 186 L 107 128
+       L 82 116 C 57 107 32 97 13 89
+       Q 3 82 7 70 L 17 39
+       C 23 18 36 7 48 7 Z"
+    fill="white" stroke="#0d0d0d" stroke-width="9" stroke-linejoin="round"
+  />
+
+  <!-- ── Ala izquierda ── -->
+  <path
+    d="M 247 99
+       C 215 94 168 83 112 76
+       L 15 79 L 19 90
+       C 88 88 162 99 246 114 Z"
+    fill="#161616"
+  />
+
+  <!-- Rayos de plumas — ala izquierda -->
+  <g stroke="#404040" stroke-width="2" stroke-linecap="round">
+    <line x1="246" y1="106" x2="206" y2="83"/>
+    <line x1="246" y1="106" x2="175" y2="79"/>
+    <line x1="246" y1="106" x2="145" y2="77"/>
+    <line x1="246" y1="106" x2="115" y2="77"/>
+    <line x1="246" y1="106" x2="85"  y2="79"/>
+    <line x1="246" y1="106" x2="55"  y2="80"/>
+    <line x1="246" y1="106" x2="28"  y2="83"/>
+  </g>
+
+  <!-- ── Ala derecha ── -->
+  <path
+    d="M 253 99
+       C 285 94 332 83 388 76
+       L 485 79 L 481 90
+       C 412 88 338 99 254 114 Z"
+    fill="#161616"
+  />
+
+  <!-- Rayos de plumas — ala derecha -->
+  <g stroke="#404040" stroke-width="2" stroke-linecap="round">
+    <line x1="254" y1="106" x2="294" y2="83"/>
+    <line x1="254" y1="106" x2="325" y2="79"/>
+    <line x1="254" y1="106" x2="355" y2="77"/>
+    <line x1="254" y1="106" x2="385" y2="77"/>
+    <line x1="254" y1="106" x2="415" y2="79"/>
+    <line x1="254" y1="106" x2="445" y2="80"/>
+    <line x1="254" y1="106" x2="472" y2="83"/>
+  </g>
+
+  <!-- ── Cuerpo del águila ── -->
+  <ellipse cx="250" cy="108" rx="18" ry="12" fill="#161616"/>
+
+  <!-- ── Cabeza (mirando a la derecha) ── -->
+  <circle cx="265" cy="95" r="12" fill="#161616"/>
+
+  <!-- Pico -->
+  <path d="M 274 98 L 286 101 L 274 104 Z" fill="#161616"/>
+
+  <!-- Ojo -->
+  <circle cx="268" cy="93" r="3.2" fill="white"/>
+  <circle cx="269" cy="93" r="1.6" fill="#161616"/>
+
+  <!-- Cuello -->
+  <path d="M 258 99 C 263 93 271 92 275 98 L 270 108 C 263 112 255 110 252 106 Z" fill="#161616"/>
+
+  <!-- Garras (indicadas) -->
+  <path d="M 242 118 C 236 123 233 128 234 130 L 240 125 Z" fill="#161616"/>
+  <path d="M 250 119 C 249 124 248 129 249 131 L 253 126 Z" fill="#161616"/>
+  <path d="M 258 118 C 264 123 267 128 266 130 L 260 125 Z" fill="#161616"/>
+
+  <!-- ── 5 estrellas azules en arco sobre el águila ── -->
+  <!-- Polígonos de estrella para máxima compatibilidad -->
+  <g fill="#1828CC">
+    <!-- Estrella 1 (izq extremo) -->
+    <polygon points="224,87 225.7,82 220.8,85 228.5,85 223.6,82" transform="scale(1) translate(0,0)"/>
+    <!-- Usar texto unicode que es soportado universalmente -->
+    <text x="218" y="87" font-size="13" font-family="Arial, sans-serif">★</text>
+    <text x="231" y="81" font-size="13" font-family="Arial, sans-serif">★</text>
+    <text x="244" y="78" font-size="13" font-family="Arial, sans-serif">★</text>
+    <text x="257" y="81" font-size="13" font-family="Arial, sans-serif">★</text>
+    <text x="270" y="87" font-size="13" font-family="Arial, sans-serif">★</text>
+  </g>
+
+  <!-- ── LAVA AUTOS — triple capa: negro exterior / blanco interior / azul relleno ── -->
+  <text x="250" y="57"
+    font-family="Impact, 'Arial Black', Arial, sans-serif"
+    font-size="50" text-anchor="middle"
+    fill="none" stroke="#0a0a0a" stroke-width="11" stroke-linejoin="round">
+    LAVA AUTOS
+  </text>
+  <text x="250" y="57"
+    font-family="Impact, 'Arial Black', Arial, sans-serif"
+    font-size="50" text-anchor="middle"
+    fill="none" stroke="white" stroke-width="6" stroke-linejoin="round">
+    LAVA AUTOS
+  </text>
+  <text x="250" y="57"
+    font-family="Impact, 'Arial Black', Arial, sans-serif"
+    font-size="50" text-anchor="middle"
+    fill="#1828B4">
+    LAVA AUTOS
+  </text>
+
+  <!-- ── GÉNESIS — blanco contorno / negro relleno ── -->
+  <text x="250" y="172"
+    font-family="Impact, 'Arial Black', Arial, sans-serif"
+    font-size="46" text-anchor="middle"
+    fill="none" stroke="white" stroke-width="8" stroke-linejoin="round">
+    GÉNESIS
+  </text>
+  <text x="250" y="172"
+    font-family="Impact, 'Arial Black', Arial, sans-serif"
+    font-size="46" text-anchor="middle"
+    fill="#0d0d0d">
+    GÉNESIS
+  </text>
+
+</svg>
