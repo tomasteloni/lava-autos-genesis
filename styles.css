@@ -686,7 +686,124 @@ body.cursor-active .cursor-ring {
 }
 
 /* --------------------------------------------------------------------------
-   8. STATS STRIP
+   8. VIDEO SCROLL (scroll-scrubbing)
+   -------------------------------------------------------------------------- */
+
+/* El wrapper es MUY ALTO para dar espacio de scroll — el sticky dura mientras tanto */
+.video-scrub-wrap {
+  position: relative;
+  height: 400vh;
+  background: #000;
+}
+
+/* El contenedor sticky ocupa 100vh y no se mueve */
+.video-scrub-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* El video llena toda la pantalla */
+.video-scrub-el {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradientes superior/inferior para integrar con las secciones */
+.video-scrub-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      var(--bg) 0%,
+      transparent 12%,
+      transparent 85%,
+      var(--bg) 100%
+    );
+  z-index: 2;
+}
+
+/* Label central */
+.video-scrub-label {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+}
+
+.video-scrub-label.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vs-eyebrow {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+
+.vs-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.8);
+}
+
+.vs-title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--neon);
+  font-size: 0.65em;
+}
+
+/* Barra de progreso del scroll (lateral derecha) */
+.video-scrub-progress {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+  z-index: 3;
+}
+
+.video-scrub-progress-bar {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--accent), var(--neon));
+  border-radius: 99px;
+  transition: height 0.1s linear;
+}
+
+/* En mobile: sección más corta */
+@media (max-width: 719px) {
+  .video-scrub-wrap { height: 300vh; }
+  .video-scrub-progress { display: none; }
+  .vs-title { font-size: 2.2rem; }
+}
+
+/* --------------------------------------------------------------------------
+   9. STATS STRIP (renumerado)
    -------------------------------------------------------------------------- */
 .stats-strip {
   background: var(--bg-2);

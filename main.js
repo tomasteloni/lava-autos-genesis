@@ -269,7 +269,97 @@
     }, 6000);
   }
 
-  /* ── 10. Smooth anchor scroll ── */
+  /* ── 10. Video scroll-scrubbing ── */
+  function initVideoScrub() {
+    var video = $("#video-scrub");
+    var wrap  = $(".video-scrub-wrap");
+    var bar   = $("#videoProgress");
+    var label = $(".video-scrub-label");
+    if (!video || !wrap) return;
+
+    /* Video nunca auto-reproduce — controlado 100% por scroll */
+    video.pause();
+    video.currentTime = 0;
+    video.muted       = true;
+    video.playsInline = true;
+
+    var isReady = false;
+
+    function setup() {
+      if (isReady) return;
+      if (!video.duration || isNaN(video.duration)) return;
+      isReady = true;
+
+      var duration = video.duration;
+
+      /* Si GSAP ScrollTrigger está disponible: usarlo para suavidad */
+      if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
+
+        ScrollTrigger.create({
+          trigger: wrap,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.5,
+          onUpdate: function (self) {
+            var p = self.progress;
+            /* Actualizar tiempo del video */
+            video.currentTime = p * duration;
+            /* Barra de progreso */
+            if (bar) bar.style.height = (p * 100) + "%";
+            /* Mostrar label entre 15% y 85% del scroll */
+            if (label) {
+              if (p > 0.15 && p < 0.85) {
+                label.classList.add("visible");
+              } else {
+                label.classList.remove("visible");
+              }
+            }
+          }
+        });
+
+      } else {
+        /* Fallback sin GSAP: scroll nativo */
+        var ticking = false;
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            var rect     = wrap.getBoundingClientRect();
+            var wrapH    = wrap.offsetHeight;
+            var viewH    = window.innerHeight;
+            var scrolled = -rect.top;
+            var total    = wrapH - viewH;
+            var p        = Math.max(0, Math.min(1, scrolled / total));
+
+            video.currentTime = p * duration;
+            if (bar) bar.style.height = (p * 100) + "%";
+            if (label) {
+              label.classList.toggle("visible", p > 0.15 && p < 0.85);
+            }
+            ticking = false;
+          });
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
+    }
+
+    /* Activar cuando el video tenga duración cargada */
+    if (video.readyState >= 1) {
+      setup();
+    } else {
+      video.addEventListener("loadedmetadata", setup);
+      video.addEventListener("canplay", setup);
+    }
+
+    /* Safety: intentar a los 3s si el evento no disparó */
+    setTimeout(setup, 3000);
+  }
+
+  /* ── 12. Smooth anchor scroll ── */
   function initAnchorLinks() {
     $$('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (e) {
@@ -285,13 +375,13 @@
     });
   }
 
-  /* ── 11. Dynamic footer year ── */
+  /* ── 13. Dynamic footer year ── */
   function initYear() {
     var el = $(".js-year");
     if (el && window.__BRAND__) el.textContent = window.__BRAND__.year;
   }
 
-  /* ── 12. Marquee pause on hover (CSS handles it, JS as safety) ── */
+  /* ── 14. Marquee pause on hover (CSS handles it, JS as safety) ── */
   function initMarquee() {
     var track = $(".marquee-track");
     if (!track) return;
@@ -318,6 +408,7 @@
     safe(initCardGlow, "initCardGlow");
     safe(initCounters, "initCounters");
     safe(initReveal, "initReveal");
+    safe(initVideoScrub, "initVideoScrub");
     safe(initAnchorLinks, "initAnchorLinks");
     safe(initMarquee, "initMarquee");
     safe(initYear, "initYear");

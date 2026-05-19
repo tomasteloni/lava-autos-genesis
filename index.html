@@ -195,6 +195,40 @@
     </section>
 
     <!-- ==================================================================
+         VIDEO SCROLL (scroll-scrubbing cinematográfico)
+         ================================================================== -->
+    <section class="video-scrub-wrap" aria-label="Video del proceso de lavado">
+      <div class="video-scrub-sticky">
+
+        <!-- Video controlado por scroll -->
+        <video
+          id="video-scrub"
+          class="video-scrub-el"
+          muted
+          playsinline
+          preload="auto"
+          aria-label="Video del proceso de lavado artesanal en Génesis">
+          <source src="assets/video/lavadero.mp4" type="video/mp4">
+        </video>
+
+        <!-- Overlay gradiente superior/inferior -->
+        <div class="video-scrub-overlay" aria-hidden="true"></div>
+
+        <!-- Etiqueta que aparece al centro mientras se scrollea -->
+        <div class="video-scrub-label" aria-hidden="true">
+          <span class="vs-eyebrow">En acción</span>
+          <p class="vs-title">Artesanal<br><em>en cada detalle</em></p>
+        </div>
+
+        <!-- Barra de progreso del scroll -->
+        <div class="video-scrub-progress" aria-hidden="true">
+          <div class="video-scrub-progress-bar" id="videoProgress"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================================================================
          STATS STRIP
          ================================================================== -->
     <section id="stats" class="stats-strip" aria-label="Estadísticas del negocio">
