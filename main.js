@@ -271,92 +271,56 @@
 
   /* ── 10. Video scroll-scrubbing ── */
   function initVideoScrub() {
-    var video = $("#video-scrub");
-    var wrap  = $(".video-scrub-wrap");
-    var bar   = $("#videoProgress");
-    var label = $(".video-scrub-label");
+    var video = document.getElementById("video-scrub");
+    var wrap  = document.querySelector(".video-scrub-wrap");
+    var bar   = document.getElementById("videoProgress");
+    var label = document.querySelector(".video-scrub-label");
     if (!video || !wrap) return;
 
-    /* Video nunca auto-reproduce — controlado 100% por scroll */
-    video.pause();
-    video.currentTime = 0;
-    video.muted       = true;
+    /* Configurar el video para scrubbing — jamás auto-reproduce */
+    video.muted      = true;
     video.playsInline = true;
+    video.preload    = "auto";
+    video.pause();
 
-    var isReady = false;
+    /* Calcula el progreso del scroll (0–1) y aplica al video */
+    function scrub() {
+      var rect  = wrap.getBoundingClientRect();
+      var total = wrap.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
 
-    function setup() {
-      if (isReady) return;
-      if (!video.duration || isNaN(video.duration)) return;
-      isReady = true;
+      var p = Math.max(0, Math.min(1, -rect.top / total));
 
-      var duration = video.duration;
-
-      /* Si GSAP ScrollTrigger está disponible: usarlo para suavidad */
-      if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-        gsap.registerPlugin(ScrollTrigger);
-
-        ScrollTrigger.create({
-          trigger: wrap,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.5,
-          onUpdate: function (self) {
-            var p = self.progress;
-            /* Actualizar tiempo del video */
-            video.currentTime = p * duration;
-            /* Barra de progreso */
-            if (bar) bar.style.height = (p * 100) + "%";
-            /* Mostrar label entre 15% y 85% del scroll */
-            if (label) {
-              if (p > 0.15 && p < 0.85) {
-                label.classList.add("visible");
-              } else {
-                label.classList.remove("visible");
-              }
-            }
-          }
-        });
-
-      } else {
-        /* Fallback sin GSAP: scroll nativo */
-        var ticking = false;
-
-        function onScroll() {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(function () {
-            var rect     = wrap.getBoundingClientRect();
-            var wrapH    = wrap.offsetHeight;
-            var viewH    = window.innerHeight;
-            var scrolled = -rect.top;
-            var total    = wrapH - viewH;
-            var p        = Math.max(0, Math.min(1, scrolled / total));
-
-            video.currentTime = p * duration;
-            if (bar) bar.style.height = (p * 100) + "%";
-            if (label) {
-              label.classList.toggle("visible", p > 0.15 && p < 0.85);
-            }
-            ticking = false;
-          });
-        }
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
+      /* Actualizar fotograma del video */
+      if (video.readyState >= 1 && video.duration && !isNaN(video.duration)) {
+        video.currentTime = p * video.duration;
       }
+
+      /* Barra de progreso lateral */
+      if (bar) bar.style.height = (p * 100) + "%";
+
+      /* Label central: visible entre 15% y 85% del scroll */
+      if (label) label.classList.toggle("visible", p > 0.15 && p < 0.85);
     }
 
-    /* Activar cuando el video tenga duración cargada */
-    if (video.readyState >= 1) {
-      setup();
-    } else {
-      video.addEventListener("loadedmetadata", setup);
-      video.addEventListener("canplay", setup);
-    }
+    /* Llamar scrub() en cada evento scroll, con RAF para 60fps */
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        scrub();
+        ticking = false;
+      });
+    }, { passive: true });
 
-    /* Safety: intentar a los 3s si el evento no disparó */
-    setTimeout(setup, 3000);
+    /* También llamar cuando el video cargue sus metadatos,
+       por si el usuario ya scrolleó antes de que cargara */
+    video.addEventListener("loadedmetadata", scrub);
+    video.addEventListener("canplaythrough", scrub);
+
+    /* Llamada inicial (posición al cargar la página) */
+    scrub();
   }
 
   /* ── 12. Smooth anchor scroll ── */
