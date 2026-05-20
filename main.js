@@ -11,6 +11,24 @@
     catch (e) { console.warn("[Genesis] " + name + " failed:", e); }
   }
 
+  /* ── 1. Lenis smooth scroll ── */
+  function initLenis() {
+    if (typeof Lenis === "undefined") return;
+    if (reduced) return;
+
+    var lenis = new Lenis({
+      duration: 1.15,
+      easing: function (t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); },
+      smoothTouch: false,
+      touchMultiplier: 1.5,
+    });
+
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    window.__lenis = lenis;
+  }
+
   /* ── 2. Custom cursor ── */
   function initCursor() {
     var dot = $(".cursor-dot");
@@ -246,7 +264,7 @@
     }, 6000);
   }
 
-  /* ── 10. Video scroll-scrubbing ── */
+  /* ── 10. Video scroll-scrubbing (desktop) / autoplay (mobile) ── */
   function initVideoScrub() {
     var video = document.getElementById("video-scrub");
     var wrap  = document.querySelector(".video-scrub-wrap");
@@ -254,13 +272,28 @@
     var label = document.querySelector(".video-scrub-label");
     if (!video || !wrap) return;
 
-    /* Configurar el video para scrubbing — jamás auto-reproduce */
-    video.muted      = true;
+    /* Siempre silenciado y playsinline (iOS lo necesita como atributo Y por JS) */
+    video.muted       = true;
     video.playsInline = true;
-    video.preload    = "auto";
+
+    var isTouch = !matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    /* ── Móvil / touch: autoplay normal, sin scrubbing ── */
+    if (isTouch) {
+      wrap.classList.add("video-mobile");
+      video.loop     = true;
+      video.autoplay = true;
+      video.preload  = "auto";
+      /* Mostrar label después de 0.8s */
+      if (label) setTimeout(function () { label.classList.add("visible"); }, 800);
+      video.play().catch(function () {});
+      return;
+    }
+
+    /* ── Desktop: scroll-scrubbing ── */
+    video.preload = "auto";
     video.pause();
 
-    /* Calcula el progreso del scroll (0–1) y aplica al video */
     function scrub() {
       var rect  = wrap.getBoundingClientRect();
       var total = wrap.offsetHeight - window.innerHeight;
@@ -268,35 +301,23 @@
 
       var p = Math.max(0, Math.min(1, -rect.top / total));
 
-      /* Actualizar fotograma del video */
       if (video.readyState >= 1 && video.duration && !isNaN(video.duration)) {
         video.currentTime = p * video.duration;
       }
 
-      /* Barra de progreso lateral */
       if (bar) bar.style.height = (p * 100) + "%";
-
-      /* Label central: visible entre 15% y 85% del scroll */
       if (label) label.classList.toggle("visible", p > 0.15 && p < 0.85);
     }
 
-    /* Llamar scrub() en cada evento scroll, con RAF para 60fps */
     var ticking = false;
     window.addEventListener("scroll", function () {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(function () {
-        scrub();
-        ticking = false;
-      });
+      requestAnimationFrame(function () { scrub(); ticking = false; });
     }, { passive: true });
 
-    /* También llamar cuando el video cargue sus metadatos,
-       por si el usuario ya scrolleó antes de que cargara */
     video.addEventListener("loadedmetadata", scrub);
     video.addEventListener("canplaythrough", scrub);
-
-    /* Llamada inicial (posición al cargar la página) */
     scrub();
   }
 
@@ -310,8 +331,12 @@
         if (!target) return;
         e.preventDefault();
         var navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 72;
-        var top = target.getBoundingClientRect().top + window.scrollY - navH;
-        window.scrollTo({ top: top, behavior: "smooth" });
+        if (window.__lenis) {
+          window.__lenis.scrollTo(target, { offset: -navH, duration: 1.2 });
+        } else {
+          var top = target.getBoundingClientRect().top + window.scrollY - navH;
+          window.scrollTo({ top: top, behavior: "smooth" });
+        }
       });
     });
   }
@@ -340,6 +365,7 @@
 
   /* ── Boot ── */
   function boot() {
+    safe(initLenis, "initLenis");
     safe(initCursor, "initCursor");
     safe(initNav, "initNav");
     safe(initHamburger, "initHamburger");
