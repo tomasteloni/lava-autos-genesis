@@ -1,123 +1,144 @@
-<svg viewBox="0 0 500 195" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lava Autos Génesis">
+<svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lava Autos Génesis">
   <title>Lava Autos Génesis</title>
 
-  <!-- ── Badge outline (sigue el contorno de alas) ── -->
+  <!-- ── Contorno del badge (sigue el perfil de las alas) ── -->
   <path
-    d="M 48 7 L 452 7 C 464 7 477 18 483 39
-       L 493 70 Q 497 82 487 89
-       C 468 97 443 107 418 116
-       L 393 128 L 393 186
-       L 107 186 L 107 128
-       L 82 116 C 57 107 32 97 13 89
-       Q 3 82 7 70 L 17 39
-       C 23 18 36 7 48 7 Z"
-    fill="white" stroke="#0d0d0d" stroke-width="9" stroke-linejoin="round"
+    d="M 60 6
+       L 460 6
+       C 474 6 486 14 490 30
+       L 498 58
+       C 500 68 494 76 484 80
+       L 420 105
+       L 390 120
+       L 390 192
+       L 130 192
+       L 130 120
+       L 100 105
+       L 36 80
+       C 26 76 20 68 22 58
+       L 30 30
+       C 34 14 46 6 60 6 Z"
+    fill="white" stroke="#111" stroke-width="8" stroke-linejoin="round"
   />
 
-  <!-- ── Ala izquierda ── -->
+  <!-- ── Ala izquierda (forma rellena) ── -->
   <path
-    d="M 247 99
-       C 215 94 168 83 112 76
-       L 15 79 L 19 90
-       C 88 88 162 99 246 114 Z"
-    fill="#161616"
+    d="M 250 112
+       C 218 106 178 95 130 87
+       L 25 84
+       L 30 97
+       C 100 95 178 107 250 122 Z"
+    fill="#131313"
   />
 
-  <!-- Rayos de plumas — ala izquierda -->
-  <g stroke="#404040" stroke-width="2" stroke-linecap="round">
-    <line x1="246" y1="106" x2="206" y2="83"/>
-    <line x1="246" y1="106" x2="175" y2="79"/>
-    <line x1="246" y1="106" x2="145" y2="77"/>
-    <line x1="246" y1="106" x2="115" y2="77"/>
-    <line x1="246" y1="106" x2="85"  y2="79"/>
-    <line x1="246" y1="106" x2="55"  y2="80"/>
-    <line x1="246" y1="106" x2="28"  y2="83"/>
+  <!-- Secciones de plumas — ala izquierda (triángulos superpuestos) -->
+  <path d="M 250 117 L 205 84 L 188 88 Z" fill="#1e1e1e"/>
+  <path d="M 250 117 L 168 81 L 152 86 Z" fill="#1a1a1a"/>
+  <path d="M 250 117 L 132 80 L 118 85 Z" fill="#1e1e1e"/>
+  <path d="M 250 117 L 98 82 L 85 87 Z"  fill="#1a1a1a"/>
+  <path d="M 250 117 L 65 84 L 55 89 Z"  fill="#1e1e1e"/>
+  <path d="M 250 117 L 40 86 L 32 91 Z"  fill="#1a1a1a"/>
+
+  <!-- Líneas de separación de plumas — ala izquierda -->
+  <g stroke="#3a3a3a" stroke-width="1.5" stroke-linecap="round">
+    <line x1="250" y1="112" x2="205" y2="84"/>
+    <line x1="250" y1="112" x2="170" y2="81"/>
+    <line x1="250" y1="112" x2="134" y2="80"/>
+    <line x1="250" y1="112" x2="99"  y2="82"/>
+    <line x1="250" y1="112" x2="66"  y2="84"/>
+    <line x1="250" y1="112" x2="38"  y2="87"/>
   </g>
 
-  <!-- ── Ala derecha ── -->
+  <!-- ── Ala derecha (forma rellena) ── -->
   <path
-    d="M 253 99
-       C 285 94 332 83 388 76
-       L 485 79 L 481 90
-       C 412 88 338 99 254 114 Z"
-    fill="#161616"
+    d="M 270 112
+       C 302 106 342 95 390 87
+       L 495 84
+       L 490 97
+       C 420 95 342 107 270 122 Z"
+    fill="#131313"
   />
 
-  <!-- Rayos de plumas — ala derecha -->
-  <g stroke="#404040" stroke-width="2" stroke-linecap="round">
-    <line x1="254" y1="106" x2="294" y2="83"/>
-    <line x1="254" y1="106" x2="325" y2="79"/>
-    <line x1="254" y1="106" x2="355" y2="77"/>
-    <line x1="254" y1="106" x2="385" y2="77"/>
-    <line x1="254" y1="106" x2="415" y2="79"/>
-    <line x1="254" y1="106" x2="445" y2="80"/>
-    <line x1="254" y1="106" x2="472" y2="83"/>
+  <!-- Secciones de plumas — ala derecha -->
+  <path d="M 270 117 L 315 84 L 332 88 Z" fill="#1e1e1e"/>
+  <path d="M 270 117 L 352 81 L 368 86 Z" fill="#1a1a1a"/>
+  <path d="M 270 117 L 388 80 L 402 85 Z" fill="#1e1e1e"/>
+  <path d="M 270 117 L 422 82 L 435 87 Z" fill="#1a1a1a"/>
+  <path d="M 270 117 L 455 84 L 465 89 Z" fill="#1e1e1e"/>
+  <path d="M 270 117 L 480 86 L 488 91 Z" fill="#1a1a1a"/>
+
+  <!-- Líneas de separación — ala derecha -->
+  <g stroke="#3a3a3a" stroke-width="1.5" stroke-linecap="round">
+    <line x1="270" y1="112" x2="315" y2="84"/>
+    <line x1="270" y1="112" x2="350" y2="81"/>
+    <line x1="270" y1="112" x2="386" y2="80"/>
+    <line x1="270" y1="112" x2="421" y2="82"/>
+    <line x1="270" y1="112" x2="454" y2="84"/>
+    <line x1="270" y1="112" x2="482" y2="87"/>
   </g>
 
   <!-- ── Cuerpo del águila ── -->
-  <ellipse cx="250" cy="108" rx="18" ry="12" fill="#161616"/>
+  <ellipse cx="260" cy="114" rx="22" ry="14" fill="#131313"/>
 
   <!-- ── Cabeza (mirando a la derecha) ── -->
-  <circle cx="265" cy="95" r="12" fill="#161616"/>
+  <circle cx="278" cy="100" r="14" fill="#131313"/>
 
   <!-- Pico -->
-  <path d="M 274 98 L 286 101 L 274 104 Z" fill="#161616"/>
+  <path d="M 289 103 L 306 106 L 289 109 Z" fill="#131313"/>
 
   <!-- Ojo -->
-  <circle cx="268" cy="93" r="3.2" fill="white"/>
-  <circle cx="269" cy="93" r="1.6" fill="#161616"/>
+  <circle cx="283" cy="98" r="3.8" fill="white"/>
+  <circle cx="284" cy="98" r="2" fill="#131313"/>
 
   <!-- Cuello -->
-  <path d="M 258 99 C 263 93 271 92 275 98 L 270 108 C 263 112 255 110 252 106 Z" fill="#161616"/>
+  <path d="M 268 104 C 275 96 285 95 290 103 L 285 116 C 276 121 265 118 260 112 Z" fill="#131313"/>
 
-  <!-- Garras (indicadas) -->
-  <path d="M 242 118 C 236 123 233 128 234 130 L 240 125 Z" fill="#161616"/>
-  <path d="M 250 119 C 249 124 248 129 249 131 L 253 126 Z" fill="#161616"/>
-  <path d="M 258 118 C 264 123 267 128 266 130 L 260 125 Z" fill="#161616"/>
+  <!-- Garras -->
+  <path d="M 252 128 C 245 133 242 139 244 141 L 250 136 Z" fill="#131313"/>
+  <path d="M 261 130 C 260 135 259 141 260 143 L 264 138 Z" fill="#131313"/>
+  <path d="M 270 128 C 277 133 280 139 278 141 L 272 136 Z" fill="#131313"/>
 
-  <!-- ── 5 estrellas azules en arco sobre el águila ── -->
-  <!-- Polígonos de estrella para máxima compatibilidad -->
-  <g fill="#1828CC">
-    <!-- Estrella 1 (izq extremo) -->
-    <polygon points="224,87 225.7,82 220.8,85 228.5,85 223.6,82" transform="scale(1) translate(0,0)"/>
-    <!-- Usar texto unicode que es soportado universalmente -->
-    <text x="218" y="87" font-size="13" font-family="Arial, sans-serif">★</text>
-    <text x="231" y="81" font-size="13" font-family="Arial, sans-serif">★</text>
-    <text x="244" y="78" font-size="13" font-family="Arial, sans-serif">★</text>
-    <text x="257" y="81" font-size="13" font-family="Arial, sans-serif">★</text>
-    <text x="270" y="87" font-size="13" font-family="Arial, sans-serif">★</text>
+  <!-- ── 5 estrellas azules — 2 arriba / 3 abajo (arco) ── -->
+  <g fill="#1828CC" font-family="Arial Unicode MS, Arial, sans-serif" font-size="14">
+    <!-- fila superior (2) -->
+    <text x="240" y="90">★</text>
+    <text x="257" y="90">★</text>
+    <!-- fila inferior (3) -->
+    <text x="225" y="103">★</text>
+    <text x="242" y="103">★</text>
+    <text x="259" y="103">★</text>
   </g>
 
-  <!-- ── LAVA AUTOS — triple capa: negro exterior / blanco interior / azul relleno ── -->
-  <text x="250" y="57"
+  <!-- ── LAVA AUTOS — negro / blanco / azul ── -->
+  <text x="260" y="56"
     font-family="Impact, 'Arial Black', Arial, sans-serif"
-    font-size="50" text-anchor="middle"
-    fill="none" stroke="#0a0a0a" stroke-width="11" stroke-linejoin="round">
+    font-size="54" text-anchor="middle"
+    fill="none" stroke="#0a0a0a" stroke-width="13" stroke-linejoin="round">
     LAVA AUTOS
   </text>
-  <text x="250" y="57"
+  <text x="260" y="56"
     font-family="Impact, 'Arial Black', Arial, sans-serif"
-    font-size="50" text-anchor="middle"
-    fill="none" stroke="white" stroke-width="6" stroke-linejoin="round">
+    font-size="54" text-anchor="middle"
+    fill="none" stroke="white" stroke-width="7" stroke-linejoin="round">
     LAVA AUTOS
   </text>
-  <text x="250" y="57"
+  <text x="260" y="56"
     font-family="Impact, 'Arial Black', Arial, sans-serif"
-    font-size="50" text-anchor="middle"
-    fill="#1828B4">
+    font-size="54" text-anchor="middle"
+    fill="#1a2cc0">
     LAVA AUTOS
   </text>
 
   <!-- ── GÉNESIS — blanco contorno / negro relleno ── -->
-  <text x="250" y="172"
+  <text x="260" y="178"
     font-family="Impact, 'Arial Black', Arial, sans-serif"
-    font-size="46" text-anchor="middle"
-    fill="none" stroke="white" stroke-width="8" stroke-linejoin="round">
+    font-size="50" text-anchor="middle"
+    fill="none" stroke="white" stroke-width="10" stroke-linejoin="round">
     GÉNESIS
   </text>
-  <text x="250" y="172"
+  <text x="260" y="178"
     font-family="Impact, 'Arial Black', Arial, sans-serif"
-    font-size="46" text-anchor="middle"
+    font-size="50" text-anchor="middle"
     fill="#0d0d0d">
     GÉNESIS
   </text>

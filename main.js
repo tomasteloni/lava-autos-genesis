@@ -11,29 +11,6 @@
     catch (e) { console.warn("[Genesis] " + name + " failed:", e); }
   }
 
-  /* ── 1. Splash ── */
-  function initSplash() {
-    var splash = $("#splash");
-    if (!splash) return;
-
-    /* JS safety: hide at 2.8s */
-    setTimeout(function () {
-      splash.classList.add("hidden");
-      revealHeroElements();
-    }, 2800);
-
-    /* Fallback: CSS animation ends at 4.5s → also trigger reveal */
-    setTimeout(revealHeroElements, 3200);
-  }
-
-  function revealHeroElements() {
-    $$(".hero-eyebrow, .hero-title-line, .hero-desc, .hero-ctas").forEach(function (el) {
-      el.classList.add("visible");
-    });
-    var car = $(".hero-car-wrap");
-    if (car) car.classList.add("visible");
-  }
-
   /* ── 2. Custom cursor ── */
   function initCursor() {
     var dot = $(".cursor-dot");
@@ -363,7 +340,6 @@
 
   /* ── Boot ── */
   function boot() {
-    safe(initSplash, "initSplash");
     safe(initCursor, "initCursor");
     safe(initNav, "initNav");
     safe(initHamburger, "initHamburger");
